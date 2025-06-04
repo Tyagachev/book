@@ -6,14 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Models\Genre;
 use App\Models\Subgenre;
 use App\Services\Subgenre\SubgenreService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class SubgenreController extends Controller
 {
 
-    public function index()
+    /**
+     * Страница поджанров
+     *
+     * @return \Inertia\Response
+     */
+    public function index():Response
     {
         $subgenres = Subgenre::query()->orderBy('name')
             ->with('genre')
@@ -24,12 +31,13 @@ class SubgenreController extends Controller
         return Inertia::render('Admin/Subgenre/SubgenreIndexComponent', compact('subgenres', 'genres'));
     }
 
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
+    /**
+     * Запись поджанра
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(Request $request): RedirectResponse
     {
         $validator = Validator::make($request->all(),[
             'name' => 'required|string|max:255|unique:subgenres,name',
@@ -47,12 +55,22 @@ class SubgenreController extends Controller
         return redirect()->back()->with('success', 'Поджанр успешно создан');
     }
 
+    /**
+     * @param string $id
+     * @return void
+     */
     public function show(string $id)
     {
         //
     }
-    
-    public function destroy(Subgenre $subgenre)
+
+    /**
+     * Удаление поджанра
+     *
+     * @param Subgenre $subgenre
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Subgenre $subgenre): RedirectResponse
     {
         SubgenreService::destroy($subgenre);
 

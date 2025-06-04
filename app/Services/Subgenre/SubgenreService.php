@@ -8,6 +8,7 @@ class SubgenreService
 {
     /**
      * Запись в БД
+     *
      * @param array $data
      * @return mixed
      */
