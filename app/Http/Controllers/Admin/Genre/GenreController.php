@@ -15,6 +15,7 @@ class GenreController extends Controller
 {
 
     /**
+     * Старница с жанрами
      * @return \Inertia\Response
      */
     public function index(): Response
@@ -27,15 +28,8 @@ class GenreController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-
-    /**
+     * Сохранение жанра
+     *
      * @param Request $request
      * @return RedirectResponse
      */
@@ -60,30 +54,8 @@ class GenreController extends Controller
    }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
+     * Удаление жанра
+     *
      * @param Genre $genre
      * @return \Illuminate\Http\RedirectResponse
      */
