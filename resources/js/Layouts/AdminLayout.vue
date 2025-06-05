@@ -236,6 +236,19 @@ export default {
                    ],
                },
                {
+                   title: 'Пользователи',
+                   links:[
+                       {
+                           linkTitle:'Список пользователей',
+                           route: route('user.index')
+                       },
+                       {
+                           linkTitle:'Добавить пользователя',
+                           route: route('user.create')
+                       },
+                   ],
+               },
+               {
                    title: 'Жанры',
                    links: [
                        {

@@ -16,6 +16,7 @@ class GenreController extends Controller
 
     /**
      * Старница с жанрами
+     *
      * @return \Inertia\Response
      */
     public function index(): Response
