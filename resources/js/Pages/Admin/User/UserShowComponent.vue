@@ -1,7 +1,7 @@
 <template>
     <div class="p-6">
         <div class="bg-white w-80 rounded-lg overflow-hidden shadow-md p-2">
-            {{ u.name }}
+            {{ userData.name }}
         </div>
     </div>
 </template>
@@ -13,7 +13,7 @@ export default {
     name: "UserShowComponent",
     layout: AdminLayout,
     props: {
-        u: Object
+        userData: Object
     },
 }
 </script>

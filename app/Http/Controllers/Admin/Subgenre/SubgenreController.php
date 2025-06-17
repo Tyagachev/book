@@ -52,7 +52,9 @@ class SubgenreController extends Controller
         }
         SubgenreService::store($request->all());
 
-        return redirect()->back()->with('success', 'Поджанр успешно создан');
+        return redirect()
+            ->back()
+            ->with('success', 'Поджанр успешно создан');
     }
 
     /**
@@ -74,7 +76,8 @@ class SubgenreController extends Controller
     {
         SubgenreService::destroy($subgenre);
 
-        return redirect()->back()
+        return redirect()
+            ->back()
             ->with('success', 'Поджанр успешно удален');
     }
 }

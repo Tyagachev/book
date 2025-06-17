@@ -51,7 +51,9 @@ class GenreController extends Controller
 
         GenreService::store($request->only('name'));
 
-        return redirect()->back()->with('success', 'Жанр добавлен успешно');
+        return redirect()
+            ->back()
+            ->with('success', 'Жанр добавлен успешно');
    }
 
     /**
@@ -64,7 +66,8 @@ class GenreController extends Controller
     {
         GenreService::destroy($genre);
 
-        return redirect()->back()
+        return redirect()
+            ->back()
             ->with('success', 'Жанр успешно удален');
     }
 }

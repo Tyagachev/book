@@ -5,7 +5,6 @@ namespace App\Services\User;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Inertia\Testing\Concerns\Has;
 
 class UserService
 {
@@ -24,6 +23,27 @@ class UserService
         ]);
         $role = Role::query()->find($data['role']);
         return $user->roles()->attach($role);
+    }
+
+    /**
+     * Обновление
+     *
+     * @param object $user
+     * @param object $request
+     * @return mixed
+     */
+    public static function update(object $user, object $request): mixed
+    {
+        $user->name = $request->name;
+        $user->email = $request->email;
+
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->roles()->sync([$request->role]);
+
+        return  $user->save();
     }
 
     /**

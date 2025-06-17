@@ -26,6 +26,8 @@ Route::prefix('admin')->middleware(['auth', isAdminMiddleware::class])->group(fu
     Route::get('user/create', [UserController::class, 'create'])->name('user.create');
     Route::post('user/store', [UserController::class, 'store'])->name('user.store');
     Route::get('user/show/{user}', [UserController::class, 'show'])->name('user.show');
+    Route::get('user/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('user/{user}', [UserController::class, 'update'])->name('user.update');
     Route::delete('user/destroy/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
     // Жанры

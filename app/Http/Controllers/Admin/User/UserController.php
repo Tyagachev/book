@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Services\User\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -85,31 +86,69 @@ class UserController extends Controller
     public function show(User $user): Response
     {
         $user = User::query()->find($user['id']);
-        $u = [
+        $userData = [
             'name' => $user['name'],
             'email' => $user['email'],
             'role' => $user->roles
         ];
-        return Inertia::render('Admin/User/UserShowComponent', compact('u'));
+        return Inertia::render('Admin/User/UserShowComponent', compact('userData'));
     }
 
     /**
+     * Редактирование пользователя
+     *
      * @param User $user
-     * @return void
+     * @return Response
      */
-    public function edit(User $user)
+    public function edit(User $user): Response
     {
-        //
+        $user = User::query()->find($user['id']);
+        $userData = [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'role' => $user->roles
+        ];
+        $roles = Role::all();
+
+        return Inertia::render('Admin/User/UserEditComponent', [
+                'userData' => $userData,
+                'roles' => $roles
+            ]);
     }
 
     /**
+     * Обновление пользователя
+     *
      * @param Request $request
      * @param User $user
-     * @return void
+     * @return RedirectResponse
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $user): RedirectResponse
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|lowercase|email|max:255'.$user->id,
+            'password' => ['confirmed'],
+            'role' => 'required',
+        ], [
+            'name.required' => 'Поле обязательно для заполнения',
+            'email.required' => 'Поле обязательно для заполнения',
+            'email.unique' => 'Такой Email уже существует',
+            'role.required' => 'Поле обязательно для заполнения'
+        ]);
+
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        UserService::update($user, $request);
+
+        return back()
+            ->with('success', 'Пользователь успешно обновлен');
     }
 
     /**
