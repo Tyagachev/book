@@ -65,6 +65,9 @@ export default {
             main: 'Main',
             footer: 'Footer'
         }
+    },
+    mounted() {
+        console.log('dddd')
     }
 }
 </script>

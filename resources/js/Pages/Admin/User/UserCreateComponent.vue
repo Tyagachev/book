@@ -49,20 +49,20 @@
                 placeholder="Повторите пароль"
                 :class="{ 'border-red-500': errors.password_confirmation }"
             >
-            <div class="mt-2">
-                <div v-if="errors" class="text-red-500 text-sm mt-1">
-                    {{ errors.role }}
-                </div>
-                <select class="block px-3 py-2 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm appearance-none" v-model="role">
-                    <option class="text-gray-500 italic" disabled selected>Выберите роль</option>
-                    <option class="py-2 text-gray-700 hover:bg-blue-50 group" v-for="role in roles" :key="role.id" :value="role.id">
-                        <span class="group-hover:text-blue-600">{{ role.role }}</span>
-                    </option>
-                </select>
+        </div>
+        <div class="mt-2">
+            <div v-if="errors" class="text-red-500 text-sm mt-1">
+                {{ errors.role }}
             </div>
-            <div class="mt-2">
-                <BlueButton @click="store">Сохранить</BlueButton>
-            </div>
+            <select class="block px-3 py-2 pr-10 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm appearance-none" v-model="role">
+                <option class="text-gray-500 italic" disabled selected>Выберите роль</option>
+                <option class="py-2 text-gray-700 hover:bg-blue-50 group" v-for="role in roles" :key="role.id" :value="role.id">
+                    <span class="group-hover:text-blue-600">{{ role.role }}</span>
+                </option>
+            </select>
+        </div>
+        <div class="mt-2">
+            <BlueButton @click="store">Сохранить</BlueButton>
         </div>
     </div>
 </template>
