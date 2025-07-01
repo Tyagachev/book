@@ -23,8 +23,8 @@
 }
 
 .editor-container_classic-editor .editor-container__editor {
-    min-width: 795px;
-    max-width: 795px;
+    min-width: 1500px;
+    max-width: 1500px;
 }
 
 .ck .ck-powered-by {
@@ -33,5 +33,5 @@
 
 .ck-rounded-corners .ck.ck-editor__main > .ck-editor__editable, .ck.ck-editor__main > .ck-editor__editable.ck-rounded-corners {
     border-radius: var(--ck-border-radius);
-    height: 500px;
+    height: 700px;
 }
